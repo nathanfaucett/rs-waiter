@@ -1,0 +1,15 @@
+[package]
+name = "waiter"
+version = "0.1.0"
+authors = ["nathanfaucett <nathanfaucett@gmail.com>"]
+
+keywords = ["waiter"]
+description = "waiter for waiting on multiple jobs to finish"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/nathanfaucett/rs-waiter.git"
+homepage = "https://github.com/nathanfaucett/rs-waiter"
+
+[dependencies]
+[dev-dependencies]
+num_cpus = { version = "1.2" }
