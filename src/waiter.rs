@@ -23,7 +23,9 @@ impl Waiter {
         }
     }
     pub fn wait(&self) {
-        thread::park();
+        if self.count.load(Ordering::Relaxed) != 0usize {
+            thread::park();
+        }
     }
 }
 
