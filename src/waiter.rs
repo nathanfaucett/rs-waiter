@@ -17,6 +17,9 @@ impl Waiter {
         }
     }
 
+    pub fn add(&self) {
+        self.count.fetch_add(1usize, Ordering::Relaxed);
+    }
     pub fn done(&self) {
         if self.count.fetch_sub(1usize, Ordering::Relaxed) == 1usize {
             self.thread.unpark();
@@ -42,7 +45,7 @@ mod test {
 
 
     #[test]
-    fn test() {
+    fn test_waiter() {
         let cpus = num_cpus::get();
 
         let count = 1usize + (cpus * 2usize);
