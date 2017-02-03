@@ -82,19 +82,19 @@ mod test {
         let count = 1usize + (cpus * 2usize);
 
         let counter = Arc::new(AtomicUsize::new(0usize));
-        let barrier = Arc::new(Barrier::new(count + 1));
+        let waiter = Waiter::new();
 
         for _ in 0usize..count {
-            let barrier = barrier.clone();
+            let waiter = waiter.clone();
             let counter = counter.clone();
 
             let _ = thread::spawn(move || {
                 counter.fetch_add(1usize, Ordering::Relaxed);
-                barrier.wait();
+                waiter.done();
             });
         }
 
-        barrier.wait();
+        waiter.wait();
 
         assert_eq!(counter.load(Ordering::Relaxed), count);
     }
