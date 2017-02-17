@@ -1,6 +1,3 @@
-#![feature(test)]
-
-
 mod waiter;
 
 
